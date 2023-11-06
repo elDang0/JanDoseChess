@@ -70,8 +70,14 @@
 
 - write my [readme file](../README.md)
 
-- # issues 
-- 
+## Surces
+  
+- [chess characters](https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode) ♙
+
+- [defines](https://stackoverflow.com/questions/1927107/define-in-java)
+
+## issues
+
 - my main proplem with the code is that is defind some variables multibe times in diffarent classes
 
     ```java
@@ -81,3 +87,13 @@
     ```
 
 may add a class just for those difines if i dont find a better way!
+
+UPDATE: found someone on stackowerflow who did it like i sad with a class
+in wich he had all is const variables :
+
+```java
+    public class Constants {
+        public static final int INT_VALUE = 0;
+        public static final DisplayValue VALUE = new DisplayValue("A");
+    }
+    ```
