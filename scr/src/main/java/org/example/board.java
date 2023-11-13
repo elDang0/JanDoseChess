@@ -2,10 +2,12 @@ package org.example;
 
 import org.example.pices.*;
 
-public  class board implements ChessConstVariables {
+import java.io.IOException;
+import java.util.Scanner;
 
-    public static void drawBoard(square[][] board) {
-        System.out.print("\033[H\033[2J");
+public  class board implements ChessConstVariables {
+    public static void drawBoard(square[][] board) throws IOException{
+
         char nextDrawnPiece;
         String backGround;
         // i = down j = right
@@ -13,7 +15,7 @@ public  class board implements ChessConstVariables {
             System.out.print(col + 1 + " ");
             for (int row = 0; row < _BoardLen_; row++) {
                 String color = (row + col) % 2 == 0 ? "47" : "100"; // background
-                if (board[col][row].hasPece) {
+                if (board[col][row].currentPiece != null) {
                     String symbol = String.valueOf(board[col][row].currentPiece.getSymbol());
                     String pieceColor = board[col][row].currentPiece.getColor() ? "97" : "30"; // color of piece
                     System.out.print("\u001B[" + color + ";" + pieceColor + "m " + symbol + " \u001B[0m");
@@ -44,7 +46,6 @@ public  class board implements ChessConstVariables {
                 else
                     color = _Black_;
                 if(i == 0 || i == 7) {
-                    board[i][j].hasPece = true;
                     switch (j) {
                         case 0, 7 -> board[i][j].currentPiece = new Rook(i, j, color);
                         case 1, 6 -> board[i][j].currentPiece = new Knight(i, j, color);
@@ -54,7 +55,6 @@ public  class board implements ChessConstVariables {
                         default -> throw new IllegalStateException("Unexpected value: " + j);
                     }
                 } else if (i == 1 || i == 6) {
-                    board[i][j].hasPece = true;
                     board[i][j].currentPiece = new Pawn(i,j,color);
                 }
 
@@ -63,10 +63,32 @@ public  class board implements ChessConstVariables {
         }
         return board;
     }
-    public square[][] select(square[][] board,int x,int y){
+/*    public square[][] select(square[][] board,int x,int y){
         board[x][y].currentPiece.
-    }
-    public square[][] move(square[][] board){
+    }*/
+    public static square[][] move(square[][] board) throws IOException {
+        Scanner myObj = new Scanner(System.in);
 
+        System.out.println("       x");
+        System.out.print("Select:");
+        int x = myObj.nextInt()-1;
+        System.out.println("       y");
+        System.out.print("Select:");
+        int y = myObj.nextInt()-1;
+
+        System.out.println("   x");
+        System.out.print("to:");
+        int xTo = myObj.nextInt()-1;
+        System.out.println("   y");
+        System.out.print("to:");
+        int yTo = myObj.nextInt()-1;
+
+    Ipiece piece = board[x][y].currentPiece;
+    board[xTo][yTo].currentPiece = piece;
+    board[x][y].currentPiece = null;
+
+    return board;
     }
 }
+
+
