@@ -2,14 +2,10 @@ package org.example;
 
 import org.example.pices.*;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public  class board implements ChessConstVariables {
-    public static void drawBoard(square[][] board) throws IOException{
-
-        char nextDrawnPiece;
-        String backGround;
+    public static void drawBoard(square[][] board){
         // i = down j = right
         for (int col = 0; col < _BoardLen_; col++) {
             System.out.print(col + 1 + " ");
@@ -66,7 +62,7 @@ public  class board implements ChessConstVariables {
 /*    public square[][] select(square[][] board,int x,int y){
         board[x][y].currentPiece.
     }*/
-    public static square[][] move(square[][] board) throws IOException {
+    public static square[][] move(square[][] board){
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("       x");
@@ -83,11 +79,10 @@ public  class board implements ChessConstVariables {
         System.out.print("to:");
         int yTo = myObj.nextInt()-1;
 
-    Ipiece piece = board[x][y].currentPiece;
-    board[xTo][yTo].currentPiece = piece;
-    board[x][y].currentPiece = null;
+        board[xTo][yTo].currentPiece = board[x][y].currentPiece;
+        board[x][y].currentPiece = null;
 
-    return board;
+        return board;
     }
 }
 
