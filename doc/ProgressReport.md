@@ -1,6 +1,6 @@
 # JanDoseChess Progress
 
-# 06.11.23
+## 06.11.23
 
 - init my Repos
 - init my Project
@@ -8,92 +8,55 @@
   
   - [board](../scr/src/main/java/org/example/board.java) mainly the draw board funktions
 
-    ```java
-        public static void drawBoard(square board[][]){
-        for(int i=0;i < _BoardLen_;i++) {
-            for (int j = 0; j < _BoardLen_; j++) {
-                if(board[i][j].color){
-                    System.out.print("[#]");
-                }else
-                    System.out.print("[ ]");
-
-            }
-            System.out.print("\n");
-        }
-    }
-    ```
-
   - [square](../scr/src/main/java/org/example/square.java)
-
-    ```java
-        public boolean color; //white = 0 Black = 1
-        public boolean hasPece;
-        public boolean peceColore; //white = 0 Black = 1
-
-        square(){
-            color = false;
-            hasPece = false;
-        }
-        ```
 
   - [Main](../scr/src/main/java/org/example/Main.java)
 
-    ```java
-            public static void main(String[] args)
-        {
-            //init board
-            square[][] board;
-            board = new square[_BoardLen_][_BoardLen_];
-
-            boolean initColor = _White_;
-            for(int i=0;i < _BoardLen_;i++){
-                for(int j=0;j < _BoardLen_;j++) {
-
-                    board[i][j] = new square();
-                    board[i][j].color = initColor;
-                    initColor = !initColor;
-                }
-                initColor = !initColor;
-            }
-            org.example.board.drawBoard(board);
-        }
-    ```
-
   - [piece](../scr/src/main/java/org/example/pice.java)
   
-    ```java
-        public int x;
-        public int y;
-        public abstract void move();
-        public abstract void selected();
-    ```
-
 - write my [readme file](../README.md)
 
-## Surces
+### Surces 07.11.23
   
 - [chess characters](https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode) ♙
 
 - [defines](https://stackoverflow.com/questions/1927107/define-in-java)
 
-## issues
+### issues 07.11.23
 
 - my main proplem with the code is that is defind some variables multibe times in diffarent classes
 
     ```java
-        static final int _BoardLen_ = 8;
-        static final boolean _White_ = false;
-        static final boolean _Black_ = true;
+     static final int _BoardLen_ = 8;
+     static final boolean _White_ = false;
+     static final boolean _Black_ = true;
     ```
 
 may add a class just for those difines if i dont find a better way!
 
 UPDATE: found someone on stackowerflow who did it like i sad with a class
-in wich he had all is const variables :
+in wich he had all is const variables: 
+
+[scr](https://stackoverflow.com/questions/1927107/define-in-java)
 
 ```java
     public class Constants {
         public static final int INT_VALUE = 0;
         public static final DisplayValue VALUE = new DisplayValue("A");
     }
+
+```
+
+## 07.11.23
+
+- Update to the [Problem](./ProgressReport.md#issues-071123).
+  
+  - I'm probably going to use interfaces and implement them in every class
+
+- you can implement classes like this:
+
+    ```java
+    import static org.example.board.drawBoard;
     ```
+
+## 13.11.23
