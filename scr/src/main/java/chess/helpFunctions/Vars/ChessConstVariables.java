@@ -1,4 +1,4 @@
-package org.example;
+package chess.helpFunctions.Vars;
 
 public interface ChessConstVariables {
     int _BoardLen_ = 8; // how many squares the board is long

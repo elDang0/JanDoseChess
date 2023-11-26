@@ -1,4 +1,6 @@
-package org.example.pices;
+package chess.pices;
+
+import chess.helpFunctions.board.square;
 
 public abstract class Ipiece {
     public int x;
@@ -19,5 +21,8 @@ public abstract class Ipiece {
     public boolean getColor(){
         return color;
     }
+    public abstract boolean valideMove(square[][] board, int x, int y, int ToX, int ToY);
+
+
 }
 

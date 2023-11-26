@@ -1,29 +1,12 @@
-package org.example;
+package chess.helpFunctions.board;
 
-import org.example.pices.*;
+import chess.helpFunctions.Vars.ChessConstVariables;
+import chess.pices.*;
+import chess.helpFunctions.grafic.*;
 
 import java.util.Scanner;
 
 public  class board implements ChessConstVariables {
-    public static void drawBoard(square[][] board){
-        // i = down j = right
-        for (int col = 0; col < _BoardLen_; col++) {
-            System.out.print(col + 1 + " ");
-            for (int row = 0; row < _BoardLen_; row++) {
-                String color = (row + col) % 2 == 0 ? "47" : "100"; // background
-                if (board[col][row].currentPiece != null) {
-                    String symbol = String.valueOf(board[col][row].currentPiece.getSymbol());
-                    String pieceColor = board[col][row].currentPiece.getColor() ? "97" : "30"; // color of piece
-                    System.out.print("\u001B[" + color + ";" + pieceColor + "m " + symbol + " \u001B[0m");
-                } else
-                    System.out.print("\u001B[" + color + "m \u3000 \u001B[0m");
-
-            }
-            System.out.print("\n");
-        }
-        System.out.println("\u3000\u3000a\u3000\u2001b\u3000\u2001c\u3000\u2001d\u3000\u2001e\u3000\u2001f\u3000\u2001g\u3000\u2001h");
-    }
-
     public static square[][] initBoard() {
         square[][] board;
         board = new square[_BoardLen_][_BoardLen_];
@@ -59,31 +42,51 @@ public  class board implements ChessConstVariables {
         }
         return board;
     }
-/*    public square[][] select(square[][] board,int x,int y){
-        board[x][y].currentPiece.
-    }*/
-    public static square[][] move(square[][] board){
+    public static int[] selectImput(){
         Scanner myObj = new Scanner(System.in);
+
+        int[] xyToxToy = new int[4];
 
         System.out.println("       x");
         System.out.print("Select:");
-        int x = myObj.nextInt()-1;
+        xyToxToy[0] = myObj.nextInt()-1;
         System.out.println("       y");
         System.out.print("Select:");
-        int y = myObj.nextInt()-1;
+        xyToxToy[1]  = myObj.nextInt()-1;
 
         System.out.println("   x");
         System.out.print("to:");
-        int xTo = myObj.nextInt()-1;
+        xyToxToy[2]  = myObj.nextInt()-1;
         System.out.println("   y");
         System.out.print("to:");
-        int yTo = myObj.nextInt()-1;
+        xyToxToy[3] = myObj.nextInt()-1;
 
-        board[xTo][yTo].currentPiece = board[x][y].currentPiece;
+        return xyToxToy;
+    }
+
+    /*public square[][] select(square[][] board,int x,int y){
+        board[x][y].currentPiece.valideMove()
+    }*/
+    public static square[][] move(square[][] board) {
+        int x;
+        int y;
+        int ToX;
+        int ToY;
+        do {
+            int[] xyToxToy = selectImput();
+            x = xyToxToy[0];
+            y = xyToxToy[1];
+            ToX = xyToxToy[2];
+            ToY = xyToxToy[3];
+        } while (!board[x][y].currentPiece.valideMove(board,x,y,ToX,ToY));
+
+        board[ToX][ToY].currentPiece = board[x][y].currentPiece;
         board[x][y].currentPiece = null;
 
         return board;
     }
+
+
 }
 
 

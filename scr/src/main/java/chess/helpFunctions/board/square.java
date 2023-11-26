@@ -1,6 +1,6 @@
-package org.example;
+package chess.helpFunctions.board;
 
-import org.example.pices.Ipiece;
+import chess.pices.Ipiece;
 
 public class square {
     public boolean color; //white = 0 Black = 1

@@ -1,6 +1,7 @@
-package org.example.pices;
+package chess.pices;
 
-import org.example.ChessConstVariables;
+import chess.helpFunctions.Vars.ChessConstVariables;
+import chess.helpFunctions.board.square;
 
 public class Queen extends Ipiece implements ChessConstVariables {
     public int x;
@@ -13,6 +14,11 @@ public class Queen extends Ipiece implements ChessConstVariables {
     @Override
     public boolean getColor() {
         return color;
+    }
+
+    @Override
+    public boolean valideMove(square[][] board, int x, int y, int ToX, int ToY) {
+        return false;
     }
 
     public Queen(int x, int y, boolean color){
